@@ -1,0 +1,59 @@
+Thomas Campbell-Adams
+Doug Applegate 
+Assignment 1
+CS455
+
+0. Compiling and Running
+	To compile this project's class files, simply run 'ant' on onyx  mfs.jar 
+	and mfc.jar are provided ready to
+	run from the command line ie:
+	
+	java -jar mfs.jar <args>
+	
+	To run using the class files do:
+	
+	cd bin
+	java com/mongeese/server/MyFileServer <args>
+	
+	or
+	
+	cd bin
+	java com/mongeese/server/MyFileClient <args>
+	
+1. Assumptions
+	Our beginning assumptions were that we would have to send the file in 
+	chunks, as very large files would not fit in memory. Another assumption 
+	made was that a server based on passing objects to the client and 
+	receiving objects from the client would be a good framework for this
+	assignment. Another assumption made was that the client would need the 
+	object to specify an offset so that the server could seek to that offset
+	in the file request and send another file segment back. This was assumed
+	because we thought we would need to make use of resuming file transfers 
+	and make the server less complex as it would not need to keep
+	track of where it was in the file when the client sent the request.
+
+2. Observations
+	One observation we made during this assignment is that 
+	ObjectOutputStream has a memory leak. This is caused by caching inside 
+	the object itself, and every so often, the cache needs to be cleared to 
+	keep the virtual memory of the Java VM from filling up. Another 
+	observation made was that we needed the thread pool to have all threads 
+	quit at the same time if all threads were inactive for 2 minutes. 
+	Otherwise, individual inactive threads would die while the active ones 
+	would stay alive. Also, it was observed that encapsulating the file 
+	segment sent back to the client in an object made responses from the 
+	server much more flexible as that response could also be used to send 
+	other types of responses back to the client.
+	
+3. Comments
+	This project was a lot of fun to work on! It definitely highlights the 
+	strengths of Java when it comes to running a server and what you can do 
+	with the Object Streams. Also, it showed that a multi-threaded transfer 
+	process, despite using the same bandwidth, was faster than a 
+	single-threaded transfer process.
+	
+	We also had a lot of fun working on this program.  We decided to take an
+	Extreme Programming, pair programming approach and used a real time 
+	collaboration tool called Saros to work on our code simultaneously.  We 
+	feel that this approach was much more efficient than programming on our 
+	own.
