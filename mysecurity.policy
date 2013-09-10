@@ -1,0 +1,7 @@
+
+grant {
+	permission java.security.AllPermission;
+};
+grant{
+    permission java.net.SocketPermission "onyx:1024-65535", "connect,resolve";
+};

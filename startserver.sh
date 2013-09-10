@@ -1,0 +1,5 @@
+ssh node01 "cd $PWD ; ./server.sh 01"
+ssh node02 "cd $PWD ; ./server.sh 02"
+ssh node03 "cd $PWD ; ./server.sh 03"
+ssh node04 "cd $PWD ; ./server.sh 04"
+ssh node05 "cd $PWD ; ./server.sh 05"
